@@ -27,6 +27,7 @@ const TodoList = () => {
 
 	const addTodoHandler = (event) => {
 		event.preventDefault()
+		setShowDialog(false)
 		if (title.trim().length > 0) {
 			dispatch(
 				todoActions.addTodo({
