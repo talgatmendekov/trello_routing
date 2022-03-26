@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { todoActions } from '../../store/todoSlice'
 import styled from 'styled-components'
+import { useCallbackPrompt } from '../../hooks/useCallbackPromt'
+import { DialogBox } from '../UI/DialogBox'
 
 const TodoList = () => {
 	const [title, setTitle] = useState('')
+	const [showDialog, setShowDialog] = useState(false)
+	const [showPrompt, confirmNavigation, cancelNavigation] =
+		useCallbackPrompt(showDialog)
 	const [toggleInputList, setToggleInputList] = useState(true)
 	const dispatch = useDispatch()
 
@@ -17,6 +22,7 @@ const TodoList = () => {
 
 	const inputChangeHandler = (event) => {
 		setTitle(event.target.value)
+		setShowDialog(true)
 	}
 
 	const addTodoHandler = (event) => {
@@ -35,6 +41,11 @@ const TodoList = () => {
 
 	return (
 		<section>
+			<DialogBox
+				showPrompt={showPrompt}
+				onConfirm={confirmNavigation}
+				onCancel={cancelNavigation}
+			/>
 			<StyledCard>
 				{toggleInputList ? (
 					<div onClick={toggleOnHandler}>

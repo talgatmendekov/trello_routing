@@ -2,10 +2,11 @@ import React, {useState} from 'react'
 import { useDispatch } from 'react-redux';
 import { todoActions } from '../../store/todoSlice';
 import styled from 'styled-components'
+import Confirm from 'semantic-ui-react'
 
 const AddList = () => {
     const [title, setTitle] = useState('');
-    // console.log(title)
+    const [showAlert, setShowAlert] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -22,11 +23,16 @@ const AddList = () => {
       setTitle('')
 
     };
+
+    const testHandler = () => {
+      setShowAlert(true)
+    }
   return (
     <StyledForm>
+      {showAlert && <Confirm/>}
       <input value={title} type= 'text'  onChange={inputChangeHandler}></input>
       <button type='submit' onClick={addTodoHandler}>Добавить список</button>
-      <button>X</button>
+      <button onClick={testHandler}>X</button>
     </StyledForm>
   )
 }

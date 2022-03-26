@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import icon from '../../assets/image/edit-icon.svg'
 import TodoModal from '../UI/TodoModal'
 
+
+
 const TodoCardItem = ({ task }) => {
 	const [showEditModal, setShowEditModal] = useState(false)
 	console.log(showEditModal)
